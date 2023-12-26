@@ -7,16 +7,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegularExpressionIPAddressValidation {
-    public static void main(String[] args) {
+    private static final String IP_ADDRESS_PATTERN =
+            "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+                    + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+                    + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+                    + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 
+    private static final Pattern patternIPAdress = Pattern.compile(IP_ADDRESS_PATTERN);
+
+    public static boolean validateIPAddress(String ipAddress) {
+        Matcher matcherIPAdress = patternIPAdress.matcher(ipAddress);
+        return matcherIPAdress.matches();
+    }
+    public static void main(String[] args) {
         String[] ipAddresses = {"127.0.0.1", "255.255.255.253", "100.99.44.2", "256.0.0.1", "abc.def.ghi.jkl"};
 
-        Pattern patternIpAddress = Pattern.compile("^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.");
-
         for (String ipAddress : ipAddresses) {
-            Matcher matcherIpAddress = patternIpAddress.matcher(ipAddress);
-            boolean isValidIpAddress = matcherIpAddress.matches();
-            System.out.println(ipAddress + " is valid? " + isValidIpAddress);
+            boolean isValidAddress = validateIPAddress(ipAddress);
+            System.out.println(ipAddress + " is valid? " + isValidAddress);
         }
     }
 }
