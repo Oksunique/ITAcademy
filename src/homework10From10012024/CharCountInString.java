@@ -33,4 +33,28 @@ public class CharCountInString {
 
         System.out.println(result);
     }
+
+    public static class ArrayToMapConverter {
+        public static <K> Map<K, Integer> arrayToMap(K[] ks) {
+
+            Map<K, Integer> map = new HashMap<>();
+
+            for (K element : ks) {
+                // Если элемент уже есть в Map, увеличиваем его количество на 1
+                if (map.containsKey(element)) {
+                    map.put(element, map.get(element) + 1);
+                } else {
+                    // Если элемента еще нет в Map, добавляем его с количеством 1
+                    map.put(element, 1);
+                }
+            }
+            return map;
+        }
+
+        public static void main(String[] args) {
+            Integer[] array = {1, 2, 3, 1, 2, 3, 4, 5,6,1,2,3,4,5};
+            Map<Integer, Integer> result = arrayToMap(array);
+            System.out.println(result);
+        }
+    }
 }
