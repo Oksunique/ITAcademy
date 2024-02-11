@@ -1,5 +1,6 @@
 package homework11From17012024.fileCreatorSorter;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 //Даны 2 файла - in1.txt и in2.txt в каждом файле по 1000 чисел от 1 до 100000.
@@ -8,7 +9,7 @@ import java.util.Arrays;
 // можем использовать в рамках этого задания метод split и метод Integer.parseInt
 
 public class FileInRundomNumbersCreatorFileOutCreatorFileSorter {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         createAndFillFiles();
         sortAndSaveToFile();
     }
@@ -28,7 +29,7 @@ public class FileInRundomNumbersCreatorFileOutCreatorFileSorter {
         }
     }
 //объединяю и сортируют числа из файлов in1.txt и in2.txt с помощью метода mergeAndSortFiles()
-    private static void sortAndSaveToFile() {
+    private static void sortAndSaveToFile() throws IOException {
         File file1 = new File("in1.txt");
         File file2 = new File("in2.txt");
         int[] numbers = mergeAndSortFiles(file1, file2);
